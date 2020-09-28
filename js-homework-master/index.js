@@ -143,9 +143,13 @@ function random(gameField){
 function computerMove(gameField){
     let randomC = random(gameField);
     let randomR = random(gameField);
-        if (gameField[randomC][randomR] === EMPTY)
+        if (gameField[randomR][randomC] === EMPTY)
         {
-            renderSymbolInCell(ZERO, randomC, randomR);
+            gameField[randomR][randomC] = ZERO;
+            console.log(`Clicked on cell: ${randomR}, ${randomC}`);
+            clickCounter++;
+            renderSymbolInCell(ZERO, randomR, randomC);
+            console.log(gameField);
         }
         else{
             computerMove(gameField)
@@ -157,10 +161,10 @@ function cellClickHandler (row, col) {
         let fieldState = clickCounter % 2 === 0 ? CROSS : ZERO;
         gameField[row][col] = fieldState;
         console.log(`Clicked on cell: ${row}, ${col}`);
-        computerMove(gameField)
         clickCounter++;
         renderSymbolInCell(fieldState, row, col);
         console.log(gameField);
+        computerMove(gameField)
     }
     checkWinner(gameField)
     if (clickCounter === possibleClicksCount)
