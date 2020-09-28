@@ -167,7 +167,7 @@ function cellClickHandler (row, col) {
         computerMove(gameField)
     }
     checkWinner(gameField)
-    if (clickCounter === possibleClicksCount)
+    if (clickCounter === gameField.length**2)
         alert('Победила дружба')
 }
 
