@@ -43,6 +43,14 @@ function renderGrid (dimension) {
     }
 }
 
+function expandField(gameField) {
+    if (clickCounter > gameField.length**2/2){
+    gameField[gameField.length] = []
+    console.log(gameField, 'Field expanded')
+    renderGrid(gameField.length-1);
+    }
+    }
+
 function checkWinner(gameField){
     const checkHorizontalWinner = () => {
         for (let i=0;i<gameField.length;i++){
@@ -136,11 +144,28 @@ function checkWinner(gameField){
     checkDiagonalWinner()
 }
 
+function random(gameField){
+    return Math.floor(Math.random()*gameField.length);
+}
+
+function computerMove(gameField){
+    let randomC = random(gameField);
+    let randomR = random(gameField);
+        if (gameField[randomC][randomR] === EMPTY)
+        {
+            renderSymbolInCell(ZERO, randomC, randomR);
+        }
+        else{
+            computerMove(gameField)
+        }
+}
+
 function cellClickHandler (row, col) {
     if (gameField[row][col]===EMPTY && !end){
         let fieldState = clickCounter % 2 === 0 ? CROSS : ZERO;
         gameField[row][col] = fieldState;
         console.log(`Clicked on cell: ${row}, ${col}`);
+        computerMove(gameField)
         clickCounter++;
         renderSymbolInCell(fieldState, row, col);
         console.log(gameField);
