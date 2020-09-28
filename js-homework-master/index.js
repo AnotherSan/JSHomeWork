@@ -43,14 +43,6 @@ function renderGrid (dimension) {
     }
 }
 
-function expandField(gameField) {
-    if (clickCounter > gameField.length**2/2){
-    gameField[gameField.length] = []
-    console.log(gameField, 'Field expanded')
-    renderGrid(gameField.length-1);
-    }
-    }
-
 function checkWinner(gameField){
     const checkHorizontalWinner = () => {
         for (let i=0;i<gameField.length;i++){
