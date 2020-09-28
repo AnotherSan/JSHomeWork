@@ -6,7 +6,6 @@ const container = document.getElementById('fieldWrapper');
 
 const gameField = [[], [], []]
 let clickCounter = 0
-const possibleClicksCount = 3*3
 
 startGame();
 addResetListener();
@@ -23,18 +22,9 @@ function initGameField(dimension, gameField){
 }
 
 function startGame () {
-    initGameField(3, gameField);
-    renderGrid(3);
-}
-
-function addResizeListener () {
-    const resizeButton = document.getElementById('sizeB');
-    resizeButton.addEventListener('click', resizeField);
-}
-
-function resizeField(){
-    let sizeField=document.getElementsByTagName("inputSize")[0].value
-    console.log(sizeField)
+    let resize=document.getElementById('inputSize').value;
+    initGameField(resize, gameField);
+    renderGrid(resize);
 }
 
 function renderGrid (dimension) {
@@ -121,7 +111,7 @@ function cellClickHandler (row, col) {
         console.log(gameField);
     }
     checkWinner(gameField)
-    if (clickCounter === possibleClicksCount)
+    if (clickCounter === resize)
         alert('Победила дружба')
 }
 
@@ -135,6 +125,17 @@ function renderSymbolInCell (symbol, row, col, color = '#333') {
 function findCell (row, col) {
     const targetRow = container.querySelectorAll('tr')[row];
     return targetRow.querySelectorAll('td')[col];
+}
+
+//function addResizeListener () {
+  //  const resizeButton = document.getElementById('sizeB');
+    //resizeButton.addEventListener('click', resizeField);
+//}
+
+function resizeField(){
+    let resize=document.getElementById('inputSize').value;
+    initGameField(resize, gameField);
+    renderGrid(resize);
 }
 
 function addResetListener () {
