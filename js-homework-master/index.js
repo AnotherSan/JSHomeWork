@@ -6,6 +6,8 @@ const container = document.getElementById('fieldWrapper');
 
 const gameField = [[], [], []]
 let clickCounter = 0
+const possibleClicksCount = 3 * 3
+let end = false
 
 startGame();
 addResetListener();
@@ -79,9 +81,43 @@ function checkWinner(gameField){
         }
     }
     const checkDiagonalWinner = () => {
-
+        let word = ''
+        let word2 = ''
+        for (let i=0; i<gameField.length; i++){
+            word += String(gameField[i][i])
+            for (let j=0; j<gameField.length; j++){
+                if (i+j === gameField.length-1) word2 += String(gameField[i][j])
+            }
+            if (word === CROSS.repeat(gameField.length) || word === ZERO.repeat(gameField.length)){
+                alert(`${word[0]} победил`)
+                paintWinningFields(gameField, 0, false, true)
+                return true
+            }
+            else if (word2 === CROSS.repeat(gameField.length) || word2 === ZERO.repeat(gameField.length)){
+                alert(`${word2[0]} победил`)
+                paintWinningFields(gameField, gameField.length, false, true)
+                return true
+            }
+        } 
     }
-    const paintWinningFields = (line, startIndex, col = false) => {
+    const paintWinningFields = (line, startIndex, col = false, dia = false) => {
+        end = true
+        if (dia){
+            if (startIndex === 0){
+                for (let i = 0; i < gameField.length; i ++) {
+                    findCell(i, i).style.color = 'red'
+                }
+                return
+            }
+            else{
+                for (let i=0; i<gameField.length; i++){
+                    for (let j=0; j<gameField.length; j++){
+                        if (i+j === gameField.length-1) findCell(i, j).style.color = 'red'
+                    }
+                }
+                return
+            }
+        }
         if (col){
             for (let i = 0; i < line.length; i++) {
                 findCell(i, startIndex).style.color = 'red'
@@ -102,7 +138,7 @@ function checkWinner(gameField){
 }
 
 function cellClickHandler (row, col) {
-    if (gameField[row][col]===EMPTY){
+    if (gameField[row][col]===EMPTY && !end){
         let fieldState = clickCounter % 2 === 0 ? CROSS : ZERO;
         gameField[row][col] = fieldState;
         console.log(`Clicked on cell: ${row}, ${col}`);
