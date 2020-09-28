@@ -48,13 +48,13 @@ function checkWinner(gameField){
         for (let i=0;i<gameField.length;i++){
             let rowString = gameField[i].join("")
             if (rowString === CROSS.repeat(gameField.length)){
-                paintWinningFields(rowString, i)
                 alert(`${CROSS} победил`)
+                paintWinningFields(rowString, i)
                 break
             }
             else if(rowString === ZERO.repeat(gameField.length)) {
-                paintWinningFields(rowString, i)
                 alert(`${ZERO} победил`)
+                paintWinningFields(rowString, i)
                 break
             }
         }
@@ -69,13 +69,13 @@ function checkWinner(gameField){
             word += flatArray[i]
         }
         if( word===CROSS.repeat(gameField.length)){
-            paintWinningFields(gameField, index, true)
             alert(`${CROSS} победил`)
+            paintWinningFields(gameField, index, true)
             return true
         }
         else if( word===ZERO.repeat(gameField.length)){
-            paintWinningFields(gameField, index, true)
             alert(`${ZERO} победил`)
+            paintWinningFields(gameField, index, true)
             return true
         }
     }
@@ -88,13 +88,13 @@ function checkWinner(gameField){
                 if (i+j === gameField.length-1) word2 += String(gameField[i][j])
             }
             if (word === CROSS.repeat(gameField.length) || word === ZERO.repeat(gameField.length)){
-                paintWinningFields(gameField, 0, false, true)
                 alert(`${word[0]} победил`)
+                paintWinningFields(gameField, 0, false, true)
                 return true
             }
             else if (word2 === CROSS.repeat(gameField.length) || word2 === ZERO.repeat(gameField.length)){
-                paintWinningFields(gameField, gameField.length, false, true)
                 alert(`${word2[0]} победил`)
+                paintWinningFields(gameField, gameField.length, false, true)
                 return true
             }
         } 
@@ -163,7 +163,7 @@ function cellClickHandler (row, col) {
         console.log(gameField);
     }
     checkWinner(gameField)
-    if (clickCounter === gameField.length**2 && !end)
+    if (clickCounter === possibleClicksCount)
         alert('Победила дружба')
 }
 
