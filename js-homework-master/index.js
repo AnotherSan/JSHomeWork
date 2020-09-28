@@ -147,7 +147,7 @@ function cellClickHandler (row, col) {
         console.log(gameField);
     }
     checkWinner(gameField)
-    if (clickCounter === resize)
+    if (clickCounter === possibleClicksCount)
         alert('Победила дружба')
 }
 
@@ -168,11 +168,11 @@ function findCell (row, col) {
     //resizeButton.addEventListener('click', resizeField);
 //}
 
-function resizeField(){
-    let resize=document.getElementById('inputSize').value;
-    initGameField(resize, gameField);
-    renderGrid(resize);
-}
+//function resizeField(){
+ //   let resize=document.getElementById('inputSize').value;
+  //  initGameField(resize, gameField);
+   // renderGrid(resize);
+//}
 
 function addResetListener () {
     const resetButton = document.getElementById('reset');
@@ -182,6 +182,7 @@ function addResetListener () {
 function resetClickHandler () {
     startGame();
     clickCounter=0;
+    end=false;
 }
 
 /* Test Function */
