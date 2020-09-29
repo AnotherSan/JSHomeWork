@@ -183,17 +183,6 @@ function findCell (row, col) {
     return targetRow.querySelectorAll('td')[col];
 }
 
-//function addResizeListener () {
-  //  const resizeButton = document.getElementById('sizeB');
-    //resizeButton.addEventListener('click', resizeField);
-//}
-
-//function resizeField(){
- //   let resize=document.getElementById('inputSize').value;
-  //  initGameField(resize, gameField);
-   // renderGrid(resize);
-//}
-
 function addResetListener () {
     const resetButton = document.getElementById('reset');
     resetButton.addEventListener('click', resetClickHandler);
