@@ -8,7 +8,6 @@
 
 Список интенсивов:
 -----------
-:white_check_mark: hello-world
 
 :white_check_mark: tic-tac-toe  
 
