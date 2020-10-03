@@ -10,6 +10,7 @@ function sortImportance (files) {
             }
         }
     }
+
     let imp = []
     let other = []
     let excl = / *!$/gim
@@ -18,7 +19,7 @@ function sortImportance (files) {
         else other.push(item)
     }
     imp.sort(function(a, b){
-        return a.match(excl).length - b.match(excl).length
+        return b.split('!').length - a.split('!').length
     })
     result = imp.concat(other)
     console.log(result) 
