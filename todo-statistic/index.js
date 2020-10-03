@@ -1,5 +1,6 @@
 const {show} = require('./show');
 const {important} = require('./important');
+const {user} = require('./user');
 const {getAllFilePathsWithExtension, readFile} = require('./fileSystem');
 const {readLine} = require('./console');
 
@@ -15,6 +16,7 @@ function getFiles() {
 }
 
 function processCommand(command) {
+    let param = command.split(/\s+/g)[1];
     switch (command) {
         case 'exit':
             process.exit(0);
@@ -26,6 +28,10 @@ function processCommand(command) {
         
         case 'important':
             important(getFiles());
+            break;
+        
+        case 'user ' + param:
+            user(getFiles(), param);
             break;
 
         default:
