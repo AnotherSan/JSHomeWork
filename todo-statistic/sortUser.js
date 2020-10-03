@@ -1,4 +1,4 @@
-function sortImportance (files) {
+function sortUser (files) {
     const todoArray = files.map(file =>  file.split('\n'))
     let result = []
     let regEx = /\/\/ TODO.*$/gim
@@ -13,16 +13,25 @@ function sortImportance (files) {
 
     let imp = []
     let other = []
-    let excl = / *!$/gim
     for (let item of result){
-        if (item.match(excl)) imp.push(item)
+        if (item.includes(';')){ 
+            //str = item.split(';')[0]
+            //name = String(str).slice(8,).toLowerCase()
+            imp.push(item)
+        }
         else other.push(item)
     }
-    imp.sort((a, b) => (b.split('!').length - a.split('!').length))
+    imp.sort(function(a, b){
+        a = a.toLowerCase().slice(8,)
+        b = b.toLowerCase().slice(8,)
+        if (a < b) return -1
+        if (a > b) return 1
+        return 0
+    })
     result = imp.concat(other)
     console.log(result) 
 }
 
 module.exports = {
-    sortImportance
+    sortUser
 };

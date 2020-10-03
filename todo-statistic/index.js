@@ -1,6 +1,7 @@
 const {show} = require('./show');
 const {important} = require('./important');
 const {user} = require('./user');
+const {sortUser} = require('./sortUser');
 const {sortImportance} = require('./sortImportance');
 const {getAllFilePathsWithExtension, readFile} = require('./fileSystem');
 const {readLine} = require('./console');
