@@ -1,6 +1,7 @@
 const {show} = require('./show');
 const {important} = require('./important');
 const {user} = require('./user');
+const {sortImportance} = require('./sortImportance');
 const {getAllFilePathsWithExtension, readFile} = require('./fileSystem');
 const {readLine} = require('./console');
 
@@ -32,6 +33,18 @@ function processCommand(command) {
         
         case 'user ' + param:
             user(getFiles(), param);
+            break;
+
+        case 'sort importance':
+            sortImportance(getFiles());
+            break;
+
+        case 'sort user':
+            sortUser(getFiles());
+            break;
+
+        case 'sort date':
+            sortDate(getFiles());
             break;
 
         default:
