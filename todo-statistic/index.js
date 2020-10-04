@@ -14,7 +14,6 @@ readLine(processCommand);
 
 function getFiles() {
     const filePaths = getAllFilePathsWithExtension(process.cwd(), 'js');
-    //console.log(filePaths.map(path => readFile(path)))
     return filePaths.map(path => readFile(path));
 }
 

@@ -15,8 +15,6 @@ function sortUser (files) {
     let other = []
     for (let item of result){
         if (item.includes(';')){ 
-            //str = item.split(';')[0]
-            //name = String(str).slice(8,).toLowerCase()
             imp.push(item)
         }
         else other.push(item)
