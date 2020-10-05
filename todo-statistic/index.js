@@ -3,6 +3,7 @@ const {important} = require('./important');
 const {user} = require('./user');
 const {sortUser} = require('./sortUser');
 const {sortImportance} = require('./sortImportance');
+const {sortDate} = require('./sortDate');
 const {showDate} = require('./showDate');
 const {getAllFilePathsWithExtension, readFile} = require('./fileSystem');
 const {readLine} = require('./console');
@@ -45,7 +46,7 @@ function processCommand(command) {
             break;
 
         case 'sort date':
-            sortDate(getFiles());
+            sortDate(getFiles(), param);
             break;
         
         case 'date ' + param:
