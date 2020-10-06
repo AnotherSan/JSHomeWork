@@ -63,9 +63,12 @@ function sortDate (files) {
     }
 }
     
+console.log('  !  | user         |  date        | comment    ');
+console.log('-'.repeat(74));
 for(let el=0; el < res.length; el++){
-        console.log(res[el]);
-    }
+    console.log(res[el]);
+}
+console.log('-'.repeat(74));//1+11+11+51
 }
 
 module.exports = {

@@ -1,4 +1,6 @@
+const {getAllFilePathsWithExtension, readFile} = require('./fileSystem');
 function show (files) {
+    const filePaths = getAllFilePathsWithExtension(process.cwd(), 'js');
     const todoArray = files.map(file =>  file.split('\n'))
     let result = []
     let regEx = /\/\/ TODO.*/gi 
@@ -10,7 +12,16 @@ function show (files) {
                 }
             }
         }
-    
+    //let filePath;
+    //for(let i=0;i<filePaths.length;i++){
+    //    for(let j=0;j<todoArray.length;j++){
+    //        for(let k=0;k<todoArray[j].length;k++){
+    //            if(k===todoArray[j].length-1){
+    //                filePath=filePaths[i];
+    //            }
+    //        }
+    //    }
+    //}
     let res=[];
     let name=' ';
     let date=' ';
