@@ -7,6 +7,8 @@ function addListeners() {
         fadeOut,
         resetFadeOut,
         move,
+        addMove,
+        play,
         scale,
         resetMoveAndScale,
         moveAndHide,
@@ -71,6 +73,13 @@ function addListeners() {
         .addEventListener('click', function () {
             const block = document.getElementById('moveAndHideBlock');
             moveAndHide(block, 1000);
+        });
+
+    document
+        .getElementById('moveAndHideReset')
+        .addEventListener('click', function () {
+            const block = document.getElementById('moveAndHideBlock');
+            block.moveAndHide.reset();
         });
 
     document
@@ -168,11 +177,16 @@ function animaster() {
 
     function moveAndHide(element, duration) {
         const interval = duration * 0.4;
-
         move(element, interval, { x: 100, y: 20 });
         setTimeout(() => {
             fadeOut(element, duration * 0.6);
         }, interval);
+        return {
+            reset() {
+                resetFadeOut(element);
+                resetMoveAndScale(element);
+            },
+        };
     }
 
     function showAndHide(element, duration) {
@@ -204,7 +218,6 @@ function animaster() {
         resetFadeOut,
         move,
         scale,
-        resetMoveAndScale,
         moveAndHide,
         showAndHide,
         heartBeating,
