@@ -7,11 +7,9 @@ function addListeners() {
         fadeOut,
         resetFadeOut,
         move,
-        addMove,
         scale,
         resetMoveAndScale,
         moveAndHide,
-        resetMoveAndHide,
         showAndHide,
         heartBeating,
     } = animaster();
@@ -73,7 +71,6 @@ function addListeners() {
         .addEventListener('click', function () {
             const block = document.getElementById('moveAndHideBlock');
             moveAndHide(block, 1000);
-            resetMoveAndHide(block);
         });
 
     document
@@ -158,12 +155,6 @@ function animaster() {
         element.style.transitionDuration = `${duration}ms`;
         element.style.transform = getTransform(translation, null);
     }
-    function addMove(duration,translation){
-        function play(element){
-            element.style.transitionDuration = `${duration}ms`;
-            element.style.transform = getTransform(translation, null);
-        }
-    }
 
     function scale(element, duration, ratio) {
         element.style.transitionDuration = `${duration}ms`;
@@ -177,16 +168,11 @@ function animaster() {
 
     function moveAndHide(element, duration) {
         const interval = duration * 0.4;
+
         move(element, interval, { x: 100, y: 20 });
         setTimeout(() => {
             fadeOut(element, duration * 0.6);
         }, interval);
-    }
-    function resetMoveAndHide(element){
-        element.style.transitionDuration=null;
-        element.style.duration=null;
-        move(element,interval,{x : 0, y : 0});
-        resetFadeOut(element);
     }
 
     function showAndHide(element, duration) {
@@ -217,11 +203,9 @@ function animaster() {
         fadeOut,
         resetFadeOut,
         move,
-        addMove,
         scale,
         resetMoveAndScale,
         moveAndHide,
-        resetMoveAndHide,
         showAndHide,
         heartBeating,
     };
