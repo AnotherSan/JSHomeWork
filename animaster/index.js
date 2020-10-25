@@ -144,8 +144,8 @@ function animaster() {
 
     function resetFadeIn(element) {
         element.style.transitionDuration = null;
-        element.classList.remove('hide');
-        element.classList.add('show');
+        element.classList.remove('show');
+        element.classList.add('hide');
     }
 
     function fadeOut(element, duration) {
@@ -156,8 +156,7 @@ function animaster() {
 
     function resetFadeOut(element) {
         element.style.transitionDuration = null;
-        element.classList.remove('show');
-        element.classList.add('hide');
+        element.classList.remove('hide');
     }
 
     function move(element, duration, translation) {
@@ -218,6 +217,7 @@ function animaster() {
         resetFadeOut,
         move,
         scale,
+        resetMoveAndScale,
         moveAndHide,
         showAndHide,
         heartBeating,
