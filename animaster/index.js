@@ -72,7 +72,7 @@ function addListeners() {
         .getElementById('moveAndHide')
         .addEventListener('click', function () {
             const block = document.getElementById('moveAndHideBlock');
-            moveAndHide(block, 1000);
+            block.moveAndHide = moveAndHide(block, 1000)
         });
 
     document
@@ -180,10 +180,11 @@ function animaster() {
         setTimeout(() => {
             fadeOut(element, duration * 0.6);
         }, interval);
+
         return {
             reset() {
-                resetFadeOut(element);
                 resetMoveAndScale(element);
+                resetFadeOut(element);
             },
         };
     }
