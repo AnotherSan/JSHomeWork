@@ -8,6 +8,10 @@ function addListeners() {
         resetFadeOut,
         move,
         addMove,
+        addScale,
+        addDelay,
+        addFadeIn,
+        addFadeOut,
         play,
         scale,
         resetMoveAndScale,
@@ -136,6 +140,7 @@ function getTransform(translation, ratio) {
 }
 
 function animaster() {
+    let _steps=[];
     function fadeIn(element, duration) {
         element.style.transitionDuration = `${duration}ms`;
         element.classList.remove('hide');
@@ -162,6 +167,58 @@ function animaster() {
     function move(element, duration, translation) {
         element.style.transitionDuration = `${duration}ms`;
         element.style.transform = getTransform(translation, null);
+    }
+
+    function addMove(duration, translation) {
+        this._steps.push([this.move.name, duration, translation])
+        return this;
+    }
+
+    function addScale(duration, ratio) {
+        this._steps.push([this.scale.name, duration, ratio])
+        return this;
+    }
+
+    function addFadeIn(duration) {
+        this._steps.push([this.fadeIn.name, duration])
+        return this;
+    }
+
+    function addFadeOut(duration) {
+        this._steps.push([this.fadeOut.name, duration])
+        return this;
+    }
+
+    function addDelay(duration) {
+        this._steps.push(['delay', duration])
+        return this;
+    }
+
+    function play(element, cycled) {
+        if(_steps.length !=0){
+            playStep(element);
+            if(cycled) _steps.push(_steps[0]);
+            setTimeout(() => {
+            play(element, cycled);
+            }, _steps[1]);
+        }
+    }
+
+    function playStep(element) {
+        switch(_steps[0]){
+            case 'move':
+                move(element, _steps[1], _steps[2]);
+                break;
+            case 'fadeIn':
+                fadeIn(element, _steps[1]);
+                break;
+            case 'scale':
+                scale(element, _steps[1], _steps[2]);
+                break;
+            case 'fadeOut':
+                fadeOut(element, _steps[1]);
+                break;
+        }
     }
 
     function scale(element, duration, ratio) {
@@ -217,6 +274,12 @@ function animaster() {
         fadeOut,
         resetFadeOut,
         move,
+        addMove,
+        addScale,
+        addFadeIn,
+        addFadeOut,
+        addDelay,
+        play,
         scale,
         resetMoveAndScale,
         moveAndHide,
