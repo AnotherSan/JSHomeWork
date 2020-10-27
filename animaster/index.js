@@ -202,6 +202,30 @@ function animaster() {
             play(element, cycled);
             }, _steps[1]);
         }
+        return {
+            stop() {
+                clearInterval(interval);
+            },
+            reset() {
+                switch (element.id) {
+                    case 'fadeInBlock':
+                        setTimeout(()=>resetFadeIn(element),_steps[1]);
+                        break;
+                    case 'fadeOutBlock':
+                        setTimeout(()=>resetFadeOut(element),_steps[1]);
+                        break;
+                    case 'scaleBlock':
+                        setTimeout(()=>resetMoveAndScale(element),_steps[1]);
+                        break;
+                    case 'moveBlock':
+                        setTimeout(()=>resetMoveAndScale(element),_steps[1]);
+                        break;
+                    case 'moveAndHideBlock':
+                        setTimeout(()=>resetMoveAndScale(element),_steps[1]);
+                        break;
+                }
+            }
+        }
     }
 
     function playStep(element) {
@@ -232,40 +256,16 @@ function animaster() {
     }
 
     function moveAndHide(element, duration) {
-        const interval = duration * 0.4;
-        move(element, interval, { x: 100, y: 20 });
-        setTimeout(() => {
-            fadeOut(element, duration * 0.6);
-        }, interval);
-
-        return {
-            reset() {
-                resetMoveAndScale(element);
-                resetFadeOut(element);
-            },
-        };
+        return animaster().addMove(duration * 0.4, {x: 100, y: 20}).addFadeOut(duration * 0.6).play(element)
     }
 
     function showAndHide(element, duration) {
         const interval = duration / 3;
-
-        fadeIn(element, interval);
-        setTimeout(() => {
-            fadeOut(element, interval);
-        }, interval * 2);
+        animaster().addFadeIn(interval).addDelay(interval).addFadeOut(interval).play(element)
     }
 
     function heartBeating(element) {
-        const interval = setInterval(() => {
-            scale(element, 500, 1.4);
-            setTimeout(() => scale(element, 500, 1), 500);
-        }, 1000);
-
-        return {
-            stop() {
-                clearInterval(interval);
-            },
-        };
+        return animaster().addScale(500, 1.4).addScale(500, 1).play(element,true);
     }
 
     return {
