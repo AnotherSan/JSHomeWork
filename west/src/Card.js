@@ -184,6 +184,8 @@ const Card = function () {
         continuation(value);
     };
 
+    
+
     // Перемещает карту в заданное место на столе.
     // Нельзя переопределять в наследниках.
     Card.prototype.moveTo = function (place, continuation) {
