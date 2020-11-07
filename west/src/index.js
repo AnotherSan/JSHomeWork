@@ -59,8 +59,8 @@ class Dog extends Creature {
 
 //Основа громила
 class Trasher extends Dog {
-    constructor(name='Громила', maxPower=5,currentPower=5,powerDescription='Получает на 1 меньше урона') {
-        super(name, maxPower,this.currentPower,this.powerDescription);
+    constructor(name='Громила', maxPower=5) {
+        super(name, maxPower);
     }
     
     modifyTakenDamage(value, fromCard, gameContext, continuation){
@@ -69,7 +69,7 @@ class Trasher extends Dog {
 
     getDescriptions() {
         let newDescriptions = super.getDescriptions();
-        return [...newDescriptions, this.powerDescription]
+        return [...newDescriptions, 'Получает на 1 меньше урона']
     }
 }
 
