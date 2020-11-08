@@ -228,7 +228,7 @@ const Card = function () {
             if (obj === Card.prototype)
                 break;
         }
-        return names.join('? ');
+        return names.join('➔ ');
     }
 
     // Обновляет вид карты.
