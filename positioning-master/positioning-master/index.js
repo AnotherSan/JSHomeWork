@@ -8,7 +8,6 @@
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay')
 
-
 function closeWindow(){
     modal.style.display = 'none';
     // overlay.style.backgroundColor = 'transparent';
